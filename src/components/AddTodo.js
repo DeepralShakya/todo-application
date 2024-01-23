@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import { TodoContext } from '../context/TodoContext';
 
@@ -8,7 +8,7 @@ export default function AddTodo() {
     
     const addTodo = (e)=>{
         e.preventDefault();
-        if(title === '' || title === undefined){
+        if(title === '' || title === ' ' || title === undefined){
             alert('Please enter something')
             return
         }else{
