@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {createContext, useState} from 'react'
 
-export default function TodoContext() {
+export const TodoContext = createContext();
+
+export const TodoProvider = (props) => {
+    const[todos, setTodos] = useState([])
   return (
-    <div>
-      
-    </div>
+    <TodoContext.Provider value={ [todos, setTodos] }>
+        {props.children}
+    </TodoContext.Provider>
   )
 }
