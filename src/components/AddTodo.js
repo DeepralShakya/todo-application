@@ -4,17 +4,17 @@ import { TodoContext } from '../context/TodoContext';
 
 export default function AddTodo() {
     const[title, setTitle] = useState('');
-    const[todos, setTodos] = useContext(TodoContext);
+    const{todos, setTodos} = useContext(TodoContext);
     
     const addTodo = (e)=>{
         e.preventDefault();
-        if(title === '' || title === ' ' || title === undefined){
+        if(!title){
             alert('Please enter something')
-            return
+            return;
         }else{
             const newTodos = [ ...todos, { id: uuidv4(), title: title, completed: false }]
             setTodos(newTodos);
-            setTitle(' ')
+            setTitle('')
         }
     }
        
@@ -22,13 +22,12 @@ export default function AddTodo() {
     <div>
       <div className="container">
       <h1>TO-DO List </h1>
-      <form>
+      <form onSubmit={addTodo}>
         <input className='addTodo' value={title} placeholder='Add TO-DO here...' onChange={e=> setTitle(e.target.value)}></input>
-        <button className='form-btn' onClick={addTodo}>ADD TODO</button>
+        <button className='form-btn'>ADD TODO</button>
        
       </form>
     </div>
     </div>
   )
 }
-
